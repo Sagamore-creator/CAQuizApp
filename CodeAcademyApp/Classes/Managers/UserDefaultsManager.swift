@@ -116,7 +116,7 @@ extension UserDefaultsManager {
         }
     }
 
-    static var loggedInUser: Account? {
+    static var loggedInAccount: Account? {
         get {
             guard let encodedLoggedInUser = userDefaults.object(forKey: UserDefaultsManagerKey.loggedInUser) as? Data else {
                 return nil

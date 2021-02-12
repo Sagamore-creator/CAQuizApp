@@ -13,10 +13,11 @@ final class AlertView: UIView {
     @IBOutlet private weak var messageLabel: UILabel!
     @IBOutlet weak var cancelButton: CAButton!
     @IBOutlet weak var agreeButton: CAButton!
-    
+    @IBOutlet weak var alertView: UIView!
+
     private weak var delegate: AlertViewDelegate?
     private var dismissCompletion: AlertDismissCompletion?
-    
+
     func configureView(
         title: String,
         message: String,
@@ -25,17 +26,29 @@ final class AlertView: UIView {
         delegate: AlertViewDelegate? = nil,
         completion: AlertDismissCompletion? = nil
     ) {
+        alertView.backgroundColor = Color(.white)
+        alertView.layer.borderWidth = 1
+        alertView.layer.borderColor = Color(.darkYellow)?.cgColor
+        alertView.layer.cornerRadius = cornerRadius
         titleLabel.text = title
         messageLabel.text = message
-        agreeButton.setTitle(agreeButtonTitle, for: .normal)
         self.delegate = delegate
         dismissCompletion = completion
-        
-        if let cancelButtonTitle = cancelButtonTitle {
-            cancelButton.setTitle(cancelButtonTitle, for: .normal)
-        } else {
+
+        agreeButton.styleButton(
+            title: agreeButtonTitle,
+            titleColor: .gray,
+            background: .green,
+            borderColor: .white)
+
+        guard let cancelButtonTitle = cancelButtonTitle else {
             cancelButton.isHidden = true
+            return
         }
+        cancelButton.styleButton(
+            title: cancelButtonTitle,
+            background: .red,
+            borderColor: .white)
     }
     
     @IBAction func cancelButtonTapped(_ sender: UIButton) {

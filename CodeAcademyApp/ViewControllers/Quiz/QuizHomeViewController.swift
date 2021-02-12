@@ -36,6 +36,7 @@ class QuizHomeViewController: CodeAcademyViewController {
     }
 
     @IBAction func logoutButtonPressed(_ sender: Any) {
+        UserDefaultsManager.loggedInAccount = nil
         dismiss(animated: true)
     }
 

@@ -43,6 +43,7 @@ extension AccountManager {
         var account = Account(username: username, password: password)
         UserDefaultsManager.saveAccount(&account)
         loggedInAccount = account
+        UserDefaultsManager.loggedInAccount = loggedInAccount
     }
 
     static func login(username: String?, password: String?) throws {
@@ -54,6 +55,7 @@ extension AccountManager {
                 throw AccountManagerError.wrongPassword
             }
             loggedInAccount = account
+            UserDefaultsManager.loggedInAccount = loggedInAccount
             return
         }
         throw AccountManagerError.accountNotFound
