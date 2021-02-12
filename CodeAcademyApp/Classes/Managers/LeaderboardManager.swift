@@ -1,0 +1,21 @@
+import Foundation
+
+struct LeaderboardManager {
+    
+    static var scoreRows: [ScoreRow] = {
+        guard let gameSaves = UserDefaultsManager.gameSaves else { return []}
+        var scoreRows = [ScoreRow]()
+        for gameSave in gameSaves {
+            scoreRows.append(ScoreRow(name: gameSave.username, points: String(gameSave.points)))
+        }
+        scoreRows.sort { (firstRow, secondRow) -> Bool in
+            return firstRow.points > secondRow.points
+        }
+        return scoreRows
+    }()
+
+    static func deleteScore() {
+        scoreRows.removeAll()
+        UserDefaultsManager.deleteGameSaves()
+    }
+}
