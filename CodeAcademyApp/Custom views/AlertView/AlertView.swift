@@ -39,7 +39,8 @@ final class AlertView: UIView {
             title: agreeButtonTitle,
             titleColor: .gray,
             background: .green,
-            borderColor: .white)
+            borderColor: .clear
+        )
 
         guard let cancelButtonTitle = cancelButtonTitle else {
             cancelButton.isHidden = true
@@ -48,7 +49,8 @@ final class AlertView: UIView {
         cancelButton.styleButton(
             title: cancelButtonTitle,
             background: .red,
-            borderColor: .white)
+            borderColor: .clear
+        )
     }
     
     @IBAction func cancelButtonTapped(_ sender: UIButton) {
