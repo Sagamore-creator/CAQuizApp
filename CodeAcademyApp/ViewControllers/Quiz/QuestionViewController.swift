@@ -10,17 +10,9 @@ class QuestionViewController: CodeAcademyViewController {
     @IBOutlet private weak var thirdChoiceButton: CAButton!
     @IBOutlet private weak var questionNumberLabel: UILabel!
     @IBOutlet private weak var pointsLabel: UILabel!
-    
+
     private let quizTimer = QuizTimer()
     var timerTimeInterval: Double = 10
-    
-    // MARK: - Button actions
-
-    @IBAction private func choiceButtonTapped(_ sender: UIButton) {
-        guard  let answer = sender.titleLabel?.text else { return }
-        QuizManager.checkTheAnswer(answer: answer)
-        updateQuiz()
-    }
 
     // MARK: - Lifecycle
 
@@ -31,6 +23,16 @@ class QuestionViewController: CodeAcademyViewController {
         startQuiz()
     }
     
+    // MARK: - Button actions
+
+    @IBAction private func choiceButtonTapped(_ sender: UIButton) {
+        guard  let answer = sender.titleLabel?.text else {
+            return
+        }
+        QuizManager.checkTheAnswer(answer: answer)
+        updateQuiz()
+    }
+
     //MARK: - Alerts
     
     lazy var timesUpAlert: AlertView? = {

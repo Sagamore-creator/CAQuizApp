@@ -60,6 +60,20 @@ extension AccountManager {
         }
         throw AccountManagerError.accountNotFound
     }
+
+    static func isNotAdmin() -> Bool {
+        guard
+            let loggedInAccount = AccountManager.loggedInAccount,
+            loggedInAccount.accountType != .admin
+        else {
+            return false
+        }
+        return true
+    }
+
+    static func deleteUsers() {
+        UserDefaultsManager.deleteUsers()
+    }
 }
 
 // MARK: - Helpers
@@ -67,7 +81,9 @@ extension AccountManager {
 private extension AccountManager {
 
     static func isUsernameTaken(_ username: String) -> Bool {
-        guard let accounts = UserDefaultsManager.accounts else { return false }
+        guard let accounts = UserDefaultsManager.accounts else {
+            return false
+        }
         return accounts.contains { account -> Bool in
             account.username == username
         }

@@ -62,6 +62,12 @@ struct UserDefaultsManager {
     static func deleteGameSaves() {
         gameSaves?.removeAll()
     }
+
+    static func deleteUsers() {
+        UserDefaultsManager.accounts?.removeAll(where: { account -> Bool in
+            account.accountType == .user
+        })
+    }
 }
 
 // MARK: - Helpers

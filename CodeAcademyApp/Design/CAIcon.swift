@@ -9,6 +9,7 @@ enum CAIcon: Int {
     case leader
     case begin
     case quiz
+    case trash
     case none
 
     func iconValue() -> UIImage? {
@@ -29,6 +30,8 @@ enum CAIcon: Int {
             return UIImage(named: "BeginIcon")
         case .quiz:
             return UIImage(named: "QuizzIcon")
+        case .trash:
+            return UIImage(named: "TrashIcon")
         case .none:
             return nil
         }

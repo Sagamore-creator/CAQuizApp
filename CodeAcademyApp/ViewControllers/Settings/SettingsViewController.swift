@@ -15,7 +15,11 @@ final class SettingsViewController: CodeAcademyViewController {
         view.backgroundColor = Color(.gray)
         userSettingsButton.styleButton(title: "User Settings")
         quizSettingsButton.styleButton(title: "Quiz Settings")
-        leaderboardSettingsButton.styleButton(title: "Leaderboard Settings")
+
+        leaderboardSettingsButton.styleButton(
+            title: "Leaderboard Settings",
+            isHidden: AccountManager.isNotAdmin()
+        )
     }
 
     // MARK: - Action

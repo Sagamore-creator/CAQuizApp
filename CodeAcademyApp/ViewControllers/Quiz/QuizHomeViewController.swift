@@ -11,21 +11,18 @@ class QuizHomeViewController: CodeAcademyViewController {
     @IBOutlet weak var settingsButton: CAButton!
     @IBOutlet weak var logoutButton: CAButton!
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-//        configureView()
-    }
-
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
+        super.viewWillAppear(animated)
         loadPointsRulesLabels()
         configureView()
         setNeedsStatusBarAppearanceUpdate()
     }
-
+    
     override var preferredStatusBarStyle: UIStatusBarStyle {
         .lightContent
     }
+
+    // MARK: - Actions
 
     @IBAction func beginButtonPressed(_ sender: Any) {
         proceedToQuestionView()
@@ -51,10 +48,6 @@ class QuizHomeViewController: CodeAcademyViewController {
         pointsForCorrectLabel.textColor = Color(.white)
         pointsMinusWhenWrongLabel.textColor = Color(.white)
         pointsPenaltyWhenMoreTimeLabel.textColor = Color(.white)
-
-        if let loggedInUser = AccountManager.loggedInAccount?.username {
-            welcomeLabel.text = "Welcome to the quiz, \(loggedInUser)"
-        }
 
         leaderboardButton.styleButton(
             title: "Leaderboard",
@@ -83,6 +76,10 @@ class QuizHomeViewController: CodeAcademyViewController {
             background: .red,
             borderColor: .clear
         )
+
+        if let loggedInUser = AccountManager.loggedInAccount?.username {
+            welcomeLabel.text = "Welcome to the quiz, \(loggedInUser)"
+        }
     }
 
     private func isLeaderboardHidden() -> Bool {
@@ -107,5 +104,9 @@ class QuizHomeViewController: CodeAcademyViewController {
         pointsForCorrectLabel.text = "Points for correct answer: \(QuizManager.pointsRules.correctAnswer)"
         pointsMinusWhenWrongLabel.text = "Points minus when wrong answer: \(QuizManager.pointsRules.wrongAnswer)"
         pointsPenaltyWhenMoreTimeLabel.text = "Penalty points when more time asked: \(QuizManager.pointsRules.timePenalty)"
+    }
+
+    deinit {
+        print("QuizHomeView dismissed")
     }
 }

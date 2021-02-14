@@ -11,16 +11,22 @@ final class QuizSettingsViewController: CodeAcademyViewController {
     @IBOutlet weak var maxQuestionsStepper: UIStepper!
     @IBOutlet weak var timerSlider: UISlider!
     @IBOutlet weak var correctAnswerPointsTextField: CATextField!
-    @IBOutlet weak var wrongAnswerPoints: CATextField!
+    @IBOutlet weak var wrongAnswerPointsTextField: CATextField!
     @IBOutlet weak var penaltyPointsTextField: CATextField!
     @IBOutlet weak var addQuestionsButton: CAButton!
     @IBOutlet weak var saveButton: CAButton!
     @IBOutlet weak var deleteAllQuestionsButton: CAButton!
 
+    private var minQuestions = Double()
+    private var maxQuestions = Double()
+    private var timeInterval = Float()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         configureView()
     }
+
+// MARK: - Actions
 
     @IBAction func minQuestionsStepperValueChanged(_ sender: UIStepper) {
         minQuestionsLabel.text = "Min q: \(sender.value)"
@@ -53,15 +59,16 @@ extension QuizSettingsViewController {
 
         addQuestionsButton.styleButton(
             title: "Add Questions",
-            isHidden: isNotAdmin()
+            isHidden: AccountManager.isNotAdmin()
         )
 
         deleteAllQuestionsButton.styleButton(
             title: "Delete All Questions",
             titleColor: .gray,
+            image: .trash,
             background: .red,
             borderColor: .clear,
-            isHidden: isNotAdmin()
+            isHidden: AccountManager.isNotAdmin()
         )
 
         saveButton.styleButton(
@@ -72,10 +79,6 @@ extension QuizSettingsViewController {
             borderColor: .clear
         )
 
-        if let loggedInAccount = AccountManager.loggedInAccount {
-            addQuestionsButton.isHidden = loggedInAccount.accountType == .user
-        }
-
         minQuestionsStepper.minimumValue = 1
         minQuestionsStepper.maximumValue = 10
         minQuestionsStepper.stepValue = 1
@@ -85,15 +88,5 @@ extension QuizSettingsViewController {
         timerSlider.minimumValue = 5
         timerSlider.maximumValue = 60
         timerSlider.value = timerSlider.minimumValue
-    }
-
-    private func isNotAdmin() -> Bool {
-        guard
-            let loggedInAccount = AccountManager.loggedInAccount,
-            loggedInAccount.accountType != .admin
-        else {
-            return false
-        }
-        return true
     }
 }

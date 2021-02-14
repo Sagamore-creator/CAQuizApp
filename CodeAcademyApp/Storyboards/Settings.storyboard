@@ -277,7 +277,7 @@
                         <outlet property="saveButton" destination="XXo-FH-DCx" id="aUa-O1-EFb"/>
                         <outlet property="timerSettingsLabel" destination="iuu-3L-4Ny" id="Zgg-Ec-Krf"/>
                         <outlet property="timerSlider" destination="TpD-A4-zLf" id="ZdO-iE-rmP"/>
-                        <outlet property="wrongAnswerPoints" destination="rcD-BG-rgv" id="Hdr-Kk-laK"/>
+                        <outlet property="wrongAnswerPointsTextField" destination="rcD-BG-rgv" id="Hdr-Kk-laK"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xCK-HN-05W" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -430,15 +430,25 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="3Z4-Sx-Hvh">
-                                <rect key="frame" x="0.0" y="473" width="414" height="389"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ud5-gF-Cw4">
+                                <rect key="frame" x="16" y="503" width="382" height="120"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5nh-5S-8SH">
-                                        <rect key="frame" x="20" y="169.5" width="374" height="50"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6O3-QK-1qn">
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="50"/>
                                         <color key="backgroundColor" systemColor="systemGreenColor"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="50" id="XQY-fd-m9j"/>
+                                            <constraint firstAttribute="height" constant="50" id="hpq-9z-AjR"/>
                                         </constraints>
+                                        <state key="normal" title="Delete Users">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="deleteUsersButtonTapped:" destination="wDS-bI-tdb" eventType="touchUpInside" id="J1H-4h-6dd"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5nh-5S-8SH">
+                                        <rect key="frame" x="0.0" y="70" width="382" height="50"/>
+                                        <color key="backgroundColor" systemColor="systemGreenColor"/>
                                         <state key="normal" title="Save">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
@@ -447,38 +457,32 @@
                                         </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="5nh-5S-8SH" firstAttribute="centerY" secondItem="3Z4-Sx-Hvh" secondAttribute="centerY" id="8yv-NG-NKr"/>
-                                    <constraint firstItem="5nh-5S-8SH" firstAttribute="centerX" secondItem="3Z4-Sx-Hvh" secondAttribute="centerX" id="O2D-dH-Q3a"/>
+                                    <constraint firstItem="6O3-QK-1qn" firstAttribute="height" secondItem="5nh-5S-8SH" secondAttribute="height" id="umi-xh-vFs"/>
                                 </constraints>
-                            </view>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="4BD-gv-QZu"/>
                         <color key="backgroundColor" systemColor="systemBlueColor"/>
                         <constraints>
-                            <constraint firstItem="3Z4-Sx-Hvh" firstAttribute="top" secondItem="vHM-qw-wOs" secondAttribute="bottom" id="3QS-6A-NiI"/>
-                            <constraint firstItem="5nh-5S-8SH" firstAttribute="height" secondItem="vHM-qw-wOs" secondAttribute="height" id="3kw-dz-fuV"/>
+                            <constraint firstItem="4BD-gv-QZu" firstAttribute="trailing" secondItem="ud5-gF-Cw4" secondAttribute="trailing" constant="16" id="8Ll-Or-Wtg"/>
                             <constraint firstItem="vHM-qw-wOs" firstAttribute="leading" secondItem="4BD-gv-QZu" secondAttribute="leading" constant="20" id="8fa-4I-4dX"/>
                             <constraint firstItem="vHM-qw-wOs" firstAttribute="centerY" secondItem="534-a4-hT1" secondAttribute="centerY" id="8y9-QT-Y0H"/>
                             <constraint firstItem="wTs-SK-nKr" firstAttribute="trailing" secondItem="vHM-qw-wOs" secondAttribute="trailing" id="Bbb-Q9-RtE"/>
-                            <constraint firstItem="3Z4-Sx-Hvh" firstAttribute="leading" secondItem="4BD-gv-QZu" secondAttribute="leading" id="Cm0-Lu-8PL"/>
                             <constraint firstItem="4BD-gv-QZu" firstAttribute="trailing" secondItem="vHM-qw-wOs" secondAttribute="trailing" constant="20" id="CsN-Jr-SSL"/>
+                            <constraint firstItem="ud5-gF-Cw4" firstAttribute="leading" secondItem="4BD-gv-QZu" secondAttribute="leading" constant="16" id="DrQ-Mm-54L"/>
                             <constraint firstItem="kuq-CT-nEF" firstAttribute="centerX" secondItem="534-a4-hT1" secondAttribute="centerX" id="EcR-BW-yj4"/>
-                            <constraint firstItem="5nh-5S-8SH" firstAttribute="leading" secondItem="vHM-qw-wOs" secondAttribute="leading" id="KKI-cx-Yc8"/>
-                            <constraint firstItem="4BD-gv-QZu" firstAttribute="trailing" secondItem="3Z4-Sx-Hvh" secondAttribute="trailing" id="M3b-gu-nUZ"/>
                             <constraint firstItem="wTs-SK-nKr" firstAttribute="height" secondItem="vHM-qw-wOs" secondAttribute="height" id="NaM-Xn-BDf"/>
-                            <constraint firstItem="4BD-gv-QZu" firstAttribute="bottom" secondItem="3Z4-Sx-Hvh" secondAttribute="bottom" id="S1e-cT-rjF"/>
                             <constraint firstItem="vHM-qw-wOs" firstAttribute="top" secondItem="wTs-SK-nKr" secondAttribute="bottom" constant="20" id="Spw-wH-ACH"/>
                             <constraint firstItem="wTs-SK-nKr" firstAttribute="top" secondItem="kuq-CT-nEF" secondAttribute="bottom" priority="800" constant="200" id="XPq-6t-HeY"/>
                             <constraint firstItem="wTs-SK-nKr" firstAttribute="leading" secondItem="vHM-qw-wOs" secondAttribute="leading" id="cCZ-1a-tOr"/>
-                            <constraint firstItem="5nh-5S-8SH" firstAttribute="leading" secondItem="vHM-qw-wOs" secondAttribute="leading" id="gkf-yl-GRa"/>
-                            <constraint firstItem="5nh-5S-8SH" firstAttribute="trailing" secondItem="vHM-qw-wOs" secondAttribute="trailing" id="oK2-Lb-f9b"/>
+                            <constraint firstItem="ud5-gF-Cw4" firstAttribute="top" secondItem="vHM-qw-wOs" secondAttribute="bottom" constant="30" id="pO6-TU-AHG"/>
                             <constraint firstItem="kuq-CT-nEF" firstAttribute="top" relation="greaterThanOrEqual" secondItem="4BD-gv-QZu" secondAttribute="top" constant="10" id="vFT-02-AZB"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="9MF-BS-Kjq"/>
                     <connections>
+                        <outlet property="deleteUsersButton" destination="6O3-QK-1qn" id="lzj-dK-Kb9"/>
                         <outlet property="passwordTextField" destination="vHM-qw-wOs" id="7J8-69-H67"/>
                         <outlet property="saveButton" destination="5nh-5S-8SH" id="DBm-Za-4z3"/>
                         <outlet property="usernameLabel" destination="kuq-CT-nEF" id="vUi-Ze-FBa"/>

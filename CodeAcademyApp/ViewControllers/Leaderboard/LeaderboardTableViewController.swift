@@ -1,17 +1,13 @@
 import UIKit
 
-class LeaderboardTableViewController: UITableViewController {
+final class LeaderboardTableViewController: UITableViewController {
 
-    var scores = [ScoreRow]()
+    private var scores = [ScoreRow]()
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        tableView.reloadData()
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
         scores = LeaderboardManager.scoreRows
+        tableView.reloadData()
     }
 
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -25,8 +21,8 @@ class LeaderboardTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "LeaderboardCell", for: indexPath)
         let scoreRow = scores[indexPath.row]
-        cell.textLabel?.text = scoreRow.name
-        cell.detailTextLabel?.text = scoreRow.points
+        cell.textLabel?.text = scoreRow.username
+        cell.detailTextLabel?.text = String(scoreRow.points)
 
         return cell
     }

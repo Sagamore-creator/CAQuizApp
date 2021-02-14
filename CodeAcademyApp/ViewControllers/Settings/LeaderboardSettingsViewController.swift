@@ -11,9 +11,11 @@ final class LeaderboardSettingsViewController: CodeAcademyViewController {
 
     private func configureView() {
         view.backgroundColor = Color(.gray)
+        
         deleteLeaderboardScoresButton.styleButton(
             title: "Delete Leaderboard Scores",
-            titleColor: .darkBrown,
+            titleColor: .gray,
+            image: .trash,
             background: .red,
             borderColor: .clear
         )

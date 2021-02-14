@@ -6,13 +6,9 @@ final class ViewController: CodeAcademyViewController {
     @IBOutlet private weak var registerButton: CAButton!
     @IBOutlet private weak var logoImageView: UIImageView!
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        configureView()
-    }
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        willLogIn()
         configureView()
     }
 
@@ -31,10 +27,10 @@ final class ViewController: CodeAcademyViewController {
         )
     }
 
-    private static func isLoggedIn() {
+    private func willLogIn() {
         if UserDefaultsManager.loggedInAccount != nil {
             AccountManager.loggedInAccount = UserDefaultsManager.loggedInAccount
-//            proceedToQuizView()
+            proceedToQuizView()
         }
     }
 }

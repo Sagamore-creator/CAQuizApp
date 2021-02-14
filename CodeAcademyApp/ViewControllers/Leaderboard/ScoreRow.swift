@@ -1,4 +1,4 @@
 struct ScoreRow {
-    let name: String
-    let points: String
+    let username: String
+    var points: Int
 }
